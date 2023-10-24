@@ -43,29 +43,30 @@ model ORG {
     number        String
     PETS          PETS[]
     created_at    DateTime @default(now())
+    city          String
 }
 
 model PETS {
-    id              String     @id @default(uuid())
+    id              String       @id @default(uuid())
     race            String
     type            String
     characteristics String
-    Available       Boolean
-    orgs            ORG        @relation(fields: [oRGId], references: [id])
-    oRGId           String
-    created_at      DateTime   @default(now())
-    details         PetsDetail @relation(fields: [petsDetailId], references: [id])
-    petsDetailId    String
-    User            User?      @relation(fields: [userId], references: [id])
+    Available       Boolean?
+    ORG             ORG          @relation(fields: [orgId], references: [id])
+    orgId           String
+    User            User?        @relation(fields: [userId], references: [id])
     userId          String?
+    petsDetail      PetsDetail[]
+    created_at      DateTime     @default(now())
 }
 
 model PetsDetail {
-    id          String      @id @default(uuid())
+    id          String       @id @default(uuid())
     height      Decimal
     weight      Decimal
-    temperament Temperament
-    food        Food
-    created_at  DateTime    @default(now())
-    PETS        PETS[]
+    temperament Temperament?
+    food        Food?
+    PETS        PETS?        @relation(fields: [petsId], references: [id])
+    petsId      String?
+    created_at  DateTime     @default(now())
 }
