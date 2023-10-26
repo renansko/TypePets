@@ -28,4 +28,9 @@ describe('Search by Characteristic Use Case', () => {
       expect.objectContaining({ characteristics: 'Lingua azul' }),
     ])
   })
+  it('Find a empty list of pets with non characteristcis is associate', async () => {
+    expect(() =>
+      sut.execute({ characteristics: 'An-characteristc-if-not-exist' }),
+    ).contain([])
+  })
 })

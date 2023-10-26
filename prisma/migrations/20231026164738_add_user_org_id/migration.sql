@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "PETS" ALTER COLUMN "Available" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "orgId" TEXT;
+
+-- AddForeignKey
+ALTER TABLE "User" ADD CONSTRAINT "User_orgId_fkey" FOREIGN KEY ("orgId") REFERENCES "ORG"("id") ON DELETE SET NULL ON UPDATE CASCADE;

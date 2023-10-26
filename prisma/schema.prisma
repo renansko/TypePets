@@ -32,6 +32,8 @@ model User {
     created_at    DateTime @default(now())
     number        String
     pets          PETS[]
+    ORG           ORG?     @relation(fields: [orgId], references: [id])
+    orgId         String?
 }
 
 model ORG {
@@ -44,6 +46,7 @@ model ORG {
     PETS          PETS[]
     created_at    DateTime @default(now())
     city          String
+    users_id      User[]
 }
 
 model PETS {

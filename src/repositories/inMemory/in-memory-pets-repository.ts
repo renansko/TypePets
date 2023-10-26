@@ -5,8 +5,9 @@ import { FindPetsIfCharacteristics, PetsRepository } from '../pets-repository'
 
 // Criar detalhes juntamente
 export class InMemoryPetsRepository implements PetsRepository {
+  public items: PETS[] = []
   async create(data: Prisma.PETSUncheckedCreateInput) {
-    const pets = {
+    const pet = {
       id: randomUUID(),
       race: data.race,
       type: data.type,
@@ -17,23 +18,23 @@ export class InMemoryPetsRepository implements PetsRepository {
       created_at: new Date(),
     }
 
-    this.item.push(pets)
+    this.items.push(pet)
 
-    return pets
+    return pet
   }
 
   async searchManyByOrgId(orgId: string) {
-    return this.item.filter((item) => item.orgId === orgId)
+    return this.items.filter((item) => item.orgId === orgId)
   }
 
   async searchManyCharacter(params: FindPetsIfCharacteristics) {
-    return this.item.filter(
-      (item) => item.characteristics === params.characteristics,
+    return this.items.filter(
+      (items) => items.characteristics === params.characteristics,
     )
   }
 
   async findById(id: string) {
-    const pet = this.item.find((item) => item.id === id)
+    const pet = this.items.find((item) => item.id === id)
 
     if (!pet) {
       return null

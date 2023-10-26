@@ -35,8 +35,6 @@ export class CreatePetsDetailsUseCase {
       throw new ResourcesNotFoundError()
     }
 
-    console.log(height)
-    console.log(weight)
     const detailsPets = await this.petsDetailRepository.createPetsDetail({
       food,
       height,

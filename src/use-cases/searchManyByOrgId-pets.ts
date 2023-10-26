@@ -17,7 +17,6 @@ export class SearchManyByOrgIdUseCase {
     orgId,
   }: PetsSearchByOrgIdUseCaseParams): Promise<PetsSearchByOrgIdUseCaseResponse> {
     const pets = await this.petsRepository.searchManyByOrgId(orgId)
-
     return {
       pets,
     }
