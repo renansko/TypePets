@@ -12,5 +12,5 @@ export interface PetsRepository {
   create(data: Prisma.PETSUncheckedCreateInput): Promise<PETS>
   searchManyByOrgId(oRGId: string): Promise<PETS[]>
   searchManyCharacter(params: FindPetsIfCharacteristics): Promise<PETS[]>
-  findById(id: string): Promise<PETS[] | null>
+  findById(id: string): Promise<PETS | null>
 }
