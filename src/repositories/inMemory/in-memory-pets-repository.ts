@@ -42,6 +42,4 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return pet
   }
-
-  public item: PETS[] = []
 }

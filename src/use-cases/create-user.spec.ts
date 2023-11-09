@@ -3,7 +3,7 @@
 import { describe, beforeEach, it, expect } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/inMemory/in-memory-users-repository'
 import { UserCreateUseCase } from './create-user'
-import { UserAlreadyExistError } from './errors/userAlreadyExisist'
+import { EmailAlreadyExistError } from './errors/emailAlreadyExisist'
 
 let userRepository: InMemoryUsersRepository
 let sut: UserCreateUseCase
@@ -41,6 +41,6 @@ describe('Register Use case', () => {
         password: '123456',
         number: '12345646',
       }),
-    ).rejects.toBeInstanceOf(UserAlreadyExistError)
+    ).rejects.toBeInstanceOf(EmailAlreadyExistError)
   })
 })
