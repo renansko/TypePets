@@ -1,9 +1,5 @@
 import { PETS, Prisma } from '@prisma/client'
 
-export interface FindManyPetsInCity {
-  city: string
-}
-
 export interface FindPetsIfCharacteristics {
   characteristics: string
 }
