@@ -10,6 +10,7 @@ interface OrgsUseCaseParams {
   password: string
   city: string
   number: string
+  address: string
 }
 
 interface OrgsUseCaseResponse {
@@ -26,6 +27,7 @@ export class OrgCreateUseCase {
     password,
     city,
     number,
+    address,
   }: OrgsUseCaseParams): Promise<OrgsUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
@@ -40,6 +42,7 @@ export class OrgCreateUseCase {
       password_hash,
       city,
       number,
+      address,
     })
 
     return {
