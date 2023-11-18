@@ -20,6 +20,7 @@ describe('Org register Use case', () => {
       email: 'HappyPets@gmail.com',
       number: '41985456525',
       password: '123456',
+      address: 'Rua itacolome',
     })
 
     expect(org.id).toEqual(expect.any(String))
@@ -34,6 +35,7 @@ describe('Org register Use case', () => {
       email,
       number: '41985456525',
       password: '123456',
+      address: 'Rua itacolome',
     })
 
     await expect(() =>
@@ -43,6 +45,7 @@ describe('Org register Use case', () => {
         email,
         number: '41985456525',
         password: '123456',
+        address: 'Rua itacolome',
       }),
     ).rejects.toBeInstanceOf(EmailAlreadyExistError)
   })

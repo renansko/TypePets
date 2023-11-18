@@ -19,6 +19,7 @@ describe('Search Many By OrgID', () => {
       email: 'happy@gmail.com',
       number: '41985456525',
       password_hash: '123456',
+      address: 'Rua itacolome',
     })
 
     await orgRepository.create({
@@ -27,6 +28,7 @@ describe('Search Many By OrgID', () => {
       email: 'happy2@gmail.com',
       number: '41985456525',
       password_hash: '123456',
+      address: 'Rua itacolome',
     })
 
     const { orgs } = await sut.execute({

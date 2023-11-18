@@ -47,6 +47,7 @@ model ORG {
     created_at    DateTime @default(now())
     city          String
     users_id      User[]
+    address       String
 }
 
 model PETS {
