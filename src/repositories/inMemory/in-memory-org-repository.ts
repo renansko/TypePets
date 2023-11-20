@@ -5,6 +5,16 @@ import { FindManyOrgInCity, OrgRepository } from '../orgs-repository'
 export class InMemoryOrgRepository implements OrgRepository {
   public items: ORG[] = []
 
+  async findById(id: string) {
+    const org = this.items.find((item) => item.id === id)
+
+    if (!org) {
+      return null
+    }
+
+    return org
+  }
+
   async findManyByCity(params: FindManyOrgInCity) {
     return this.items.filter((items) => items.city === params.city)
   }
