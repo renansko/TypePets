@@ -16,6 +16,10 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     const indicePet = this.items.findIndex((item) => item.id === petId)
+    if (this.items[indicePet].orgId === null) {
+      throw new PetNotAvaibleError()
+    }
+
     if (this.items[indicePet].Available === false) {
       throw new PetNotAvaibleError()
     }

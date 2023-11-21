@@ -16,7 +16,7 @@ describe('Register Use case', () => {
     petRepositoryInMemory = new InMemoryPetsRepository()
     userRepository = new InMemoryUsersRepository()
     orgRepository = new InMemoryOrgRepository()
-    sut = new AdoptedPetsUseCase(petRepositoryInMemory)
+    sut = new AdoptedPetsUseCase(petRepositoryInMemory, orgRepository)
   })
   it('should be able a adopet a pet with he is avaible', async () => {
     const user = await userRepository.create({
@@ -43,7 +43,7 @@ describe('Register Use case', () => {
     })
 
     const petAdoted = await sut.execute({ userId: user.id, petId: pet.id })
-
+    console.log(petAdoted)
     expect(petAdoted.pet.Available).toBeFalsy()
   })
 })
