@@ -9,7 +9,7 @@ interface PetsSearchByOrgIdUseCaseResponse {
   pets: PETS[]
 }
 
-export class SearchManyByOrgIdUseCase {
+export class SearchManyPetsByOrgIdUseCase {
   // eslint-disable-next-line no-useless-constructor
   constructor(private petsRepository: PetsRepository) {}
 

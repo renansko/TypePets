@@ -30,6 +30,8 @@ export class InMemoryPetsRepository implements PetsRepository {
       userId,
     }
 
+    this.items.splice(indicePet, 1, novosDados)
+
     return novosDados
   }
 

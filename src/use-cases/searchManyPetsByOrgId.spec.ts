@@ -2,15 +2,15 @@
 
 import { InMemoryPetsRepository } from '@/repositories/inMemory/in-memory-pets-repository'
 import { describe, beforeEach, it, expect } from 'vitest'
-import { SearchManyByOrgIdUseCase } from './searchManyByOrgId-pets'
+import { SearchManyPetsByOrgIdUseCase } from './searchManyPetsByOrgId-pets'
 
 let petRepositoryInMemory: InMemoryPetsRepository
-let sut: SearchManyByOrgIdUseCase
+let sut: SearchManyPetsByOrgIdUseCase
 
 describe('Search Many By OrgID', () => {
   beforeEach(() => {
     petRepositoryInMemory = new InMemoryPetsRepository()
-    sut = new SearchManyByOrgIdUseCase(petRepositoryInMemory)
+    sut = new SearchManyPetsByOrgIdUseCase(petRepositoryInMemory)
   })
   it('should be able to list a pets to one org', async () => {
     await petRepositoryInMemory.create({
