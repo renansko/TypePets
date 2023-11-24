@@ -1,6 +1,8 @@
 import { randomUUID } from 'crypto'
 import { Prisma, User } from '@prisma/client'
 import { UserRepository } from '../users-repository'
+import { UserAlreadyAssociateOrgError } from '@/use-cases/errors/userAlreadyAssociateOrg'
+import { ResourcesNotFoundError } from '@/use-cases/errors/resourcesNotFoundError'
 
 export class InMemoryUsersRepository implements UserRepository {
   public items: User[] = []
@@ -12,6 +14,30 @@ export class InMemoryUsersRepository implements UserRepository {
     }
 
     return user
+  }
+
+  async createAdminUser(organizationId: string, userId: string) {
+    const user = this.findById(userId)
+    if (!user) {
+      throw new ResourcesNotFoundError()
+    }
+
+    const indiceUser = this.items.findIndex((item) => item.id === userId)
+
+    if (this.items[indiceUser].orgId != null) {
+      throw new UserAlreadyAssociateOrgError()
+    }
+
+    const adminUser: User = {
+      ...this.items[indiceUser],
+      orgId: organizationId,
+      role: 'ADMIN',
+    }
+    console.log(this.items[indiceUser].orgId)
+
+    this.items.splice(indiceUser, 1, adminUser)
+
+    return adminUser
   }
 
   async create(data: Prisma.UserUncheckedCreateInput) {

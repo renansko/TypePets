@@ -5,4 +5,5 @@ export interface UserRepository {
   findById(id: string): Promise<User | null>
   findByEmail(email: string): Promise<User | null>
   findManyByOrgId(orgId: string): Promise<User[]>
+  createAdminUser(userId: string, orgId: string): Promise<User>
 }
