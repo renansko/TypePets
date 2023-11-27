@@ -13,7 +13,7 @@ describe('Find pets by city', () => {
   beforeEach(() => {
     orgRepository = new InMemoryOrgRepository()
     petRepositoryInMemory = new InMemoryPetsRepository()
-    sut = new FindPetsByCityUseCase(petRepositoryInMemory)
+    sut = new FindPetsByCityUseCase(petRepositoryInMemory, orgRepository)
   })
   it('should be able to list all pets in a city', async () => {
     const org = await orgRepository.create({
@@ -26,6 +26,7 @@ describe('Find pets by city', () => {
     })
 
     await petRepositoryInMemory.create({
+      name: 'alberto',
       race: 'Chaw Chaw',
       type: 'Spitz',
       characteristics: 'Lingua azul',
@@ -34,6 +35,7 @@ describe('Find pets by city', () => {
     })
 
     await petRepositoryInMemory.create({
+      name: 'alfredo',
       race: 'Doblermen',
       type: 'High',
       characteristics: 'Lingua azul',
@@ -42,6 +44,7 @@ describe('Find pets by city', () => {
     })
 
     await petRepositoryInMemory.create({
+      name: 'Bebezao',
       race: 'Doblermen',
       type: 'High',
       characteristics: 'Lingua azul',
@@ -51,7 +54,6 @@ describe('Find pets by city', () => {
 
     const { pets } = await sut.execute({
       city: 'Curitiba',
-      orgInstance: orgRepository,
     })
 
     expect(pets).toHaveLength(2)
@@ -60,7 +62,6 @@ describe('Find pets by city', () => {
     expect(() =>
       sut.execute({
         city: 'An-characteristc-if-not-exist',
-        orgInstance: orgRepository,
       }),
     ).contain([])
   })

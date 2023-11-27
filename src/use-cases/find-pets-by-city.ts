@@ -1,10 +1,9 @@
-import { InMemoryOrgRepository } from '@/repositories/inMemory/in-memory-org-repository'
+import { OrgRepository } from '@/repositories/orgs-repository'
 import { PetsRepository } from '@/repositories/pets-repository'
 import { PETS } from '@prisma/client'
 
 interface PetsFindByCityUseCaseParams {
   city: string
-  orgInstance?: InMemoryOrgRepository
 }
 
 interface PetsFindByCityUseCaseResponse {
@@ -13,13 +12,17 @@ interface PetsFindByCityUseCaseResponse {
 
 export class FindPetsByCityUseCase {
   // eslint-disable-next-line no-useless-constructor
-  constructor(private petsRepository: PetsRepository) {}
+  constructor(
+    private petsRepository: PetsRepository,
+    private orgRepository: OrgRepository,
+  ) {}
 
   async execute({
     city,
-    orgInstance,
   }: PetsFindByCityUseCaseParams): Promise<PetsFindByCityUseCaseResponse> {
-    const pets = await this.petsRepository.findPetsByOrgCity(city, orgInstance)
+    const org = await this.orgRepository.findManyByCity({ city })
+
+    const pets = await this.petsRepository.findPetsByOrgCity(org)
 
     return {
       pets,
