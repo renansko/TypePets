@@ -1,7 +1,6 @@
-import { PETS, Prisma } from '@prisma/client'
+import { ORG, PETS, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { FindPetsIfCharacteristics, PetsRepository } from '../pets-repository'
-import { InMemoryOrgRepository } from './in-memory-org-repository'
 import { ResourcesNotFoundError } from '@/use-cases/errors/resourcesNotFoundError'
 import { PetNotAvaibleError } from '@/use-cases/errors/petNotAvaibleError'
 
@@ -38,6 +37,7 @@ export class InMemoryPetsRepository implements PetsRepository {
   async create(data: Prisma.PETSUncheckedCreateInput) {
     const pet = {
       id: randomUUID(),
+      name: data.name,
       race: data.race,
       type: data.type,
       characteristics: data.characteristics,
@@ -52,9 +52,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async findPetsByOrgCity(city: string, orgInstance: InMemoryOrgRepository) {
-    const org = await orgInstance.findManyByCity({ city })
-
+  async findPetsByOrgCity(org: ORG[]) {
     const PetsByOrgCity = this.items.filter((pet) => {
       return org.find((org) => org.id === pet.orgId)
     })

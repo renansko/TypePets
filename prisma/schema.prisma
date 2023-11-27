@@ -52,6 +52,7 @@ model ORG {
 
 model PETS {
     id              String       @id @default(uuid())
+    name            String
     race            String
     type            String
     characteristics String

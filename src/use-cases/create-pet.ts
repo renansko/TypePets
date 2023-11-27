@@ -2,6 +2,7 @@ import { PetsRepository } from '@/repositories/pets-repository'
 import { PETS } from '@prisma/client'
 
 interface PetsUseCaseParams {
+  name: string
   race: string
   type: string
   characteristics: string
@@ -19,6 +20,7 @@ export class PetsCreateUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute({
+    name,
     race,
     type,
     characteristics,
@@ -27,6 +29,7 @@ export class PetsCreateUseCase {
     Available,
   }: PetsUseCaseParams): Promise<PetsUseCaseResponse> {
     const pets = await this.petsRepository.create({
+      name,
       race,
       Available,
       type,

@@ -14,6 +14,7 @@ describe('Register Use case', () => {
   })
   it('should be able to create a new pet', async () => {
     const { pets } = await sut.execute({
+      name: 'alberto',
       race: 'Chaw Chaw',
       type: 'Spitz',
       characteristics: 'Lingua azul',
