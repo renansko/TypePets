@@ -9,14 +9,14 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     type: z.string(),
     characteristics: z.string(),
     orgId: z.string(),
-    Available: z.boolean(),
+    Available: z.boolean().default(true),
   })
 
   const { name, race, type, characteristics, orgId, Available } =
     createOrgBodySchema.parse(request.body)
 
   const createPetUseCase = makeCreatePetUseCase()
-  await createPetUseCase.execute({
+  const pet = await createPetUseCase.execute({
     name,
     race,
     type,
@@ -25,5 +25,5 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     Available,
   })
 
-  return reply.status(201).send
+  return reply.status(201).send({ pet })
 }
