@@ -3,7 +3,7 @@ import { FindOrgByIdUseCase } from '../find-orgs-by-id'
 
 export function makeFindByIdOrgUseCase() {
   const prismaOrgRepository = new PrismaOrgRepository()
-  const findByEmailOrgUseCase = new FindOrgByIdUseCase(prismaOrgRepository)
+  const findByIdOrgUseCase = new FindOrgByIdUseCase(prismaOrgRepository)
 
-  return findByEmailOrgUseCase
+  return findByIdOrgUseCase
 }

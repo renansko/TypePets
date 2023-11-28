@@ -1,4 +1,4 @@
-import { PETS, ORG, Prisma } from '@prisma/client'
+import { ORG, Prisma } from '@prisma/client'
 import { FindPetsIfCharacteristics, PetsRepository } from '../pets-repository'
 import { prisma } from '@/lib/prisma'
 
@@ -40,22 +40,15 @@ export class PrismaPetsRepository implements PetsRepository {
   }
 
   async findPetsByOrgCity(org: ORG[]) {
-    const pets: PETS[] = []
-
-    org.forEach(async (org) => {
-      const pet = await prisma.pETS.findMany({
-        where: {
-          ORG: {
-            name: {
-              contains: org.id,
-            },
-          },
+    const petIds = org.map((org) => org.id)
+    const PetsByOrgCity = await prisma.pETS.findMany({
+      where: {
+        orgId: {
+          in: petIds,
         },
-      })
-      pets.push(...pet)
+      },
     })
-
-    return pets
+    return PetsByOrgCity
   }
 
   async adoptedPets(userId: string, petId: string) {
