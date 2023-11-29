@@ -3,7 +3,7 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
-  const createOrgBodySchema = z.object({
+  const createPetBodySchema = z.object({
     name: z.string(),
     race: z.string(),
     type: z.string(),
@@ -13,7 +13,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   })
 
   const { name, race, type, characteristics, orgId, Available } =
-    createOrgBodySchema.parse(request.body)
+    createPetBodySchema.parse(request.body)
 
   const createPetUseCase = makeCreatePetUseCase()
   const pet = await createPetUseCase.execute({
