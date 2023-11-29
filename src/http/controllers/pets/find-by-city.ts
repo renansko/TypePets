@@ -3,11 +3,11 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 export async function findByCity(request: FastifyRequest, reply: FastifyReply) {
-  const findByCityOrgBodySchema = z.object({
+  const findByCityQuerySchema = z.object({
     city: z.string(),
   })
 
-  const { city } = findByCityOrgBodySchema.parse(request.query)
+  const { city } = findByCityQuerySchema.parse(request.query)
 
   const findByCityPetUseCase = makeFindByCityUseCase()
   const pets = await findByCityPetUseCase.execute({
