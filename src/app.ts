@@ -3,11 +3,13 @@ import { orgRoutes } from './http/controllers/orgs/routes'
 import { ZodError } from 'zod'
 import { env } from './env'
 import { petsRoutes } from './http/controllers/pets/routes'
+import { userRoutes } from './http/controllers/users/routes'
 
 export const app = fastify()
 
 app.register(orgRoutes)
 app.register(petsRoutes)
+app.register(userRoutes)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {

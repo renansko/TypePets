@@ -1,4 +1,4 @@
-export class PetNotAvaibleError extends Error {
+export class PetIsNotAvaiable extends Error {
   constructor() {
     super('Pet unavaible!')
   }

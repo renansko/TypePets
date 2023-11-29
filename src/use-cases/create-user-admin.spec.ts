@@ -16,7 +16,7 @@ describe('Register admin Use case', () => {
   beforeEach(() => {
     userRepository = new InMemoryUsersRepository()
     orgRepository = new InMemoryOrgRepository()
-    sut = new NewUserAdminCreateUseCase(userRepository)
+    sut = new NewUserAdminCreateUseCase(userRepository, orgRepository)
   })
   it('should be able to create a new admin user', async () => {
     const password_hash = await hash('123456', 6)
