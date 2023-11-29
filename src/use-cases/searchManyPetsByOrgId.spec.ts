@@ -14,6 +14,7 @@ describe('Search Many By OrgID', () => {
   })
   it('should be able to list a pets to one org', async () => {
     await petRepositoryInMemory.create({
+      name: 'Alberto',
       race: 'Chaw Chaw',
       type: 'Spitz',
       characteristics: 'Lingua azul',
@@ -23,6 +24,7 @@ describe('Search Many By OrgID', () => {
     })
 
     await petRepositoryInMemory.create({
+      name: 'Alberto',
       race: 'Pit Bull',
       type: 'Spitz',
       characteristics: 'Bombado',
@@ -32,6 +34,7 @@ describe('Search Many By OrgID', () => {
     })
 
     await petRepositoryInMemory.create({
+      name: 'Alberto',
       race: 'Chaw Chaw',
       type: 'Spitz',
       characteristics: 'Lingua azul',

@@ -1,4 +1,4 @@
-export class PetNotAvaibleError extends Error {
+export class PetNotAssociateWithNoOrgError extends Error {
   constructor() {
     super('Pet not associate with no Org!')
   }

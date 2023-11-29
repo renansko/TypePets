@@ -1,27 +1,12 @@
 import { ORG, PETS, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { FindPetsIfCharacteristics, PetsRepository } from '../pets-repository'
-import { ResourcesNotFoundError } from '@/use-cases/errors/resourcesNotFoundError'
-import { PetNotAvaibleError } from '@/use-cases/errors/petNotAvaibleError'
 
 // Criar detalhes juntamente
 export class InMemoryPetsRepository implements PetsRepository {
   public items: PETS[] = []
   async adoptedPets(userId: string, petId: string) {
-    const pet = this.findById(petId)
-
-    if (!pet) {
-      throw new ResourcesNotFoundError()
-    }
-
     const indicePet = this.items.findIndex((item) => item.id === petId)
-    if (this.items[indicePet].orgId === null) {
-      throw new PetNotAvaibleError()
-    }
-
-    if (this.items[indicePet].Available === false) {
-      throw new PetNotAvaibleError()
-    }
 
     const novosDados: PETS = {
       ...this.items[indicePet],

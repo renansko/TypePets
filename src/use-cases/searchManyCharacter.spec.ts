@@ -14,6 +14,7 @@ describe('Search by Characteristic Use Case', () => {
   })
   it('should be able to list a pets with your characteristcs', async () => {
     await petRepositoryInMemory.create({
+      name: 'Alberto',
       race: 'Chaw Chaw',
       type: 'Spitz',
       characteristics: 'Lingua azul',

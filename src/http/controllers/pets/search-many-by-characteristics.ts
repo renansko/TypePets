@@ -10,12 +10,14 @@ export async function searchByCharacterPets(
     characteristics: z.string(),
   })
 
+  console.log(request.query)
+
   const { characteristics } = searchByCharacterPetsQuerySchema.parse(
     request.query,
   )
 
   const searchByCharacterPetsPetUseCase = makeSearchByCharacterPets()
-  const pets = await searchByCharacterPetsPetUseCase.execute({
+  const { pets } = await searchByCharacterPetsPetUseCase.execute({
     characteristics,
   })
 

@@ -16,7 +16,11 @@ describe('Register Use case', () => {
     petRepositoryInMemory = new InMemoryPetsRepository()
     userRepository = new InMemoryUsersRepository()
     orgRepository = new InMemoryOrgRepository()
-    sut = new AdoptedPetsUseCase(petRepositoryInMemory, orgRepository)
+    sut = new AdoptedPetsUseCase(
+      petRepositoryInMemory,
+      orgRepository,
+      userRepository,
+    )
   })
   it('should be able a adopet a pet with he is avaible', async () => {
     const user = await userRepository.create({
@@ -34,6 +38,7 @@ describe('Register Use case', () => {
       address: 'Rua itacolome',
     })
     const pet = await petRepositoryInMemory.create({
+      name: 'Alberto',
       race: 'Pit Bull',
       type: 'Spitz',
       characteristics: 'Bombado',
