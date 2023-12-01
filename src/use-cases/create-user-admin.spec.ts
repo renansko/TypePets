@@ -36,7 +36,11 @@ describe('Register admin Use case', () => {
       address: 'Rua itacolome',
     })
 
-    const response = await sut.execute({ orgId: org.id, userId: user.id })
+    const response = await sut.execute({
+      orgId: org.id,
+      userId: user.id,
+      role: 'ADMIN',
+    })
 
     expect(response.adminUser).toEqual(
       expect.objectContaining({ orgId: org.id }),
@@ -69,10 +73,10 @@ describe('Register admin Use case', () => {
       address: 'Rua itacolome',
     })
 
-    await sut.execute({ orgId: org.id, userId: user.id })
+    await sut.execute({ orgId: org.id, userId: user.id, role: 'ADMIN' })
 
     await expect(() =>
-      sut.execute({ orgId: org_2.id, userId: user.id }),
+      sut.execute({ orgId: org_2.id, userId: user.id, role: 'ADMIN' }),
     ).rejects.toBeInstanceOf(UserAlreadyAssociateOrgError)
   })
 })
