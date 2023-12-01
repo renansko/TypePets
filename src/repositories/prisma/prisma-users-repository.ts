@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { Prisma, Role } from '@prisma/client'
 import { UserRepository } from '../users-repository'
 import { prisma } from '@/lib/prisma'
 
@@ -39,14 +39,18 @@ export class PrismaUserRepository implements UserRepository {
     return users
   }
 
-  async createAdminUser(userId: string, orgId: string) {
+  async createAdminUser(userId: string, orgId: string, role: Role) {
+    console.log(userId)
+    console.log(orgId)
+    console.log(role)
+    console.log('aaaaaaaaaaaaaaa')
     const adminUser = await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
         orgId,
-        role: 'ADMIN',
+        role,
       },
     })
 

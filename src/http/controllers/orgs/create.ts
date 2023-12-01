@@ -26,11 +26,10 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       password,
       address,
     })
+    return reply.status(201).send
   } catch (err) {
     if (err instanceof EmailAlreadyExistError) {
       return reply.status(409).send({ Erro: err.message })
     }
-
-    return reply.status(201).send
   }
 }
