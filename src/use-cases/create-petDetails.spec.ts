@@ -21,6 +21,7 @@ describe('Register Use case', () => {
   })
   it('should be able to create a new pet Details', async () => {
     const pet = await petsRepository.create({
+      name: 'Albertinho',
       race: 'Chaw Chaw',
       type: 'Spitz',
       characteristics: 'Lingua azul',

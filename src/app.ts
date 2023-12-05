@@ -4,12 +4,14 @@ import { ZodError } from 'zod'
 import { env } from './env'
 import { petsRoutes } from './http/controllers/pets/routes'
 import { userRoutes } from './http/controllers/users/routes'
+import { petDetailsRoutes } from './http/controllers/pets/petDetails/routes'
 
 export const app = fastify()
 
 app.register(orgRoutes)
 app.register(petsRoutes)
 app.register(userRoutes)
+app.register(petDetailsRoutes)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
