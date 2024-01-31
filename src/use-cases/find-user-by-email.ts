@@ -1,6 +1,6 @@
 import { UserRepository } from '@/repositories/users-repository'
 import { User } from '@prisma/client'
-import { UserNotFoundError } from './errors/userNotFoundError'
+import { NotFoundError } from './errors/userNotFoundError'
 
 interface UserFindByEmailUseCaseParams {
   email: string
@@ -20,7 +20,7 @@ export class FindUserByEmailUseCase {
     const user = await this.userRepository.findByEmail(email)
 
     if (user === null) {
-      throw new UserNotFoundError()
+      throw new NotFoundError()
     }
 
     return { user }

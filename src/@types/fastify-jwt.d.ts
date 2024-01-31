@@ -6,9 +6,5 @@ declare module '@fastify/jwt' {
       sub: string
       role: 'ADMIN' | 'MEMBER'
     }
-    org: {
-      sub: string
-      role: 'ADMIN' | 'MEMBER'
-    }
   }
 }
