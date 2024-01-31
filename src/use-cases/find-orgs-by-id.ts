@@ -19,7 +19,7 @@ export class FindOrgByIdUseCase {
   }: OrgsFindByIdUseCaseParams): Promise<OrgsFindByIdUseCaseResponse> {
     const org = await this.orgsRepository.findById(id)
 
-    if (org === null) {
+    if (!org) {
       throw new ResourcesNotFoundError()
     }
 

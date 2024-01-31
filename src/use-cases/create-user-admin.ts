@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { UserRepository } from '@/repositories/users-repository'
 import { Role, User } from '@prisma/client'
-import { UserNotFoundError } from './errors/userNotFoundError'
+import { NotFoundError } from './errors/userNotFoundError'
 import { OrgRepository } from '@/repositories/orgs-repository'
 import { OrgNotFoundError } from './errors/OrgNotFoundError'
 import { UserAlreadyAssociateOrgError } from './errors/userAlreadyAssociateOrg'
@@ -31,7 +31,7 @@ export class NewUserAdminCreateUseCase {
   }: NewAdminUserUseCaseParams): Promise<NewAdminUserUseCaseResponse> {
     const user = await this.userRepository.findById(userId)
     if (user === null) {
-      throw new UserNotFoundError()
+      throw new NotFoundError()
     }
 
     if (user.orgId !== orgId && user.orgId !== null) {
@@ -49,8 +49,8 @@ export class NewUserAdminCreateUseCase {
     }
 
     const adminUser = await this.userRepository.createAdminUser(
-      userId,
       orgId,
+      userId,
       role,
     )
     console.log(role)

@@ -43,7 +43,7 @@ describe('Register admin Use case', () => {
     })
 
     expect(response.adminUser).toEqual(
-      expect.objectContaining({ orgId: org.id }),
+      expect.objectContaining({ orgId: org.id, role: 'ADMIN' }),
     )
   })
   it('not should be able to create a new admin user with user has orgId associated is different', async () => {

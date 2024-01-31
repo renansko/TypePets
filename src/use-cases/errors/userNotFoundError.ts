@@ -1,5 +1,5 @@
-export class UserNotFoundError extends Error {
+export class NotFoundError extends Error {
   constructor() {
-    super('Cannot find a user with this ID')
+    super('Cannot find a resource with this ID')
   }
 }

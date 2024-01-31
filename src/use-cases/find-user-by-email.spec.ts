@@ -3,7 +3,7 @@
 import { describe, beforeEach, it, expect } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/inMemory/in-memory-users-repository'
 import { FindUserByEmailUseCase } from './find-user-by-email'
-import { UserNotFoundError } from './errors/userNotFoundError'
+import { NotFoundError } from './errors/userNotFoundError'
 
 let userRepository: InMemoryUsersRepository
 let sut: FindUserByEmailUseCase
@@ -40,6 +40,6 @@ describe('Register Use case', () => {
   it('not should be able a find user with he dont exist', async () => {
     await expect(() =>
       sut.execute({ email: 'An-Id-if-not-exist' }),
-    ).rejects.toThrowError(UserNotFoundError)
+    ).rejects.toThrowError(NotFoundError)
   })
 })

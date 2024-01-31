@@ -14,6 +14,11 @@ export class PrismaPetsRepository implements PetsRepository {
       where: {
         orgId: oRGId,
       },
+      include: {
+        petsDetail: {
+          distinct: ['created_at', 'id', 'petsId'],
+        },
+      },
     })
 
     return pets
@@ -24,6 +29,11 @@ export class PrismaPetsRepository implements PetsRepository {
       where: {
         characteristics: params.characteristics,
       },
+      include: {
+        petsDetail: {
+          distinct: ['created_at', 'id', 'petsId'],
+        },
+      },
     })
 
     return Pets
@@ -33,6 +43,11 @@ export class PrismaPetsRepository implements PetsRepository {
     const pet = await prisma.pETS.findUnique({
       where: {
         id,
+      },
+      include: {
+        petsDetail: {
+          distinct: ['created_at', 'id', 'petsId'],
+        },
       },
     })
 
@@ -45,6 +60,11 @@ export class PrismaPetsRepository implements PetsRepository {
       where: {
         orgId: {
           in: petIds,
+        },
+      },
+      include: {
+        petsDetail: {
+          distinct: ['created_at', 'id', 'petsId'],
         },
       },
     })

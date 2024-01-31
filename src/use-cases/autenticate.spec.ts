@@ -1,15 +1,15 @@
 import { InMemoryUsersRepository } from '@/repositories/inMemory/in-memory-users-repository'
 import { describe, expect, it, beforeEach } from 'vitest'
-import { AutenticateUseCase } from './autenticate'
+import { AuthenticateUserUseCase } from './authenticate-user'
 import { hash } from 'bcryptjs'
 
 let userRepositoryInMemory: InMemoryUsersRepository
-let sut: AutenticateUseCase
+let sut: AuthenticateUserUseCase
 
 describe('Authenticate Use Case', () => {
   beforeEach(() => {
     userRepositoryInMemory = new InMemoryUsersRepository()
-    sut = new AutenticateUseCase(userRepositoryInMemory)
+    sut = new AuthenticateUserUseCase(userRepositoryInMemory)
   })
   it('should be able to autheticate one user', async () => {
     await userRepositoryInMemory.create({
