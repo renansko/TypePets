@@ -1,9 +1,5 @@
 # TYPE PETS
 
-![NodeJS](https://github.com/renansko/TypePets/edit/main/LICENSE)
-
-#
-
 Is a API Rest make to adoction animals in any organization register on api.
 
 You is can be a user or admin, depending of your context.
@@ -51,5 +47,5 @@ npx prisma migrate dev
 
 ## Diagrama banco de dados:
 
-h
-![Diagrama](src\img\Pets.jpeg)
+
+![Diagrama](src\img\Pets.svg)
