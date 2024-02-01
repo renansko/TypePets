@@ -48,4 +48,4 @@ npx prisma migrate dev
 ## Diagrama banco de dados:
 
 
-![Diagrama](src\img\Pets.png)
+![Diagrama](src\img\Pets.svg)
