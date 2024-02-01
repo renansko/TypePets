@@ -45,6 +45,12 @@ Up migrations:
 npx prisma migrate dev
 ```
 
-## Diagrama banco de dados:
+Run aplication
+
+```bash
+npm run dev
+```
+
+## Diagrama banco de dados
 
 ![Diagrama](src/img/Pets.svg)
