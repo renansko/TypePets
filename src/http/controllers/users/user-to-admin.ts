@@ -9,18 +9,19 @@ export async function userToAdmin(
 ) {
   const userToAdminBodySchema = z.object({
     orgId: z.string(),
-    userId: z.string(),
     role: z.nativeEnum(Role),
   })
 
-  const { orgId, userId, role } = userToAdminBodySchema.parse(request.body)
+  const { orgId, role } = userToAdminBodySchema.parse(request.body)
 
   const userToAdminUseCase = makeUserToAdminUseCase()
   await userToAdminUseCase.execute({
     orgId,
-    userId,
+    userId: request.user.sub,
     role,
   })
 
-  return reply.status(200).send({ message: `User ${userId} is now ${role}` })
+  return reply
+    .status(200)
+    .send({ message: `User ${request.user.sub} is now ${role}` })
 }
