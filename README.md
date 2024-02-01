@@ -1,5 +1,9 @@
 # TYPE PETS
 
+![NodeJS](https://github.com/renansko/TypePets/edit/main/LICENSE)
+
+#
+
 Is a API Rest make to adoction animals in any organization register on api.
 
 You is can be a user or admin, depending of your context.
@@ -8,7 +12,7 @@ You is can be a user or admin, depending of your context.
 
 **ORG** can create PETS, Update Characteriscs and he status.
 
-# Tecnologias:
+## Tecnologias
 
 - Node.js
 - TypeScript
@@ -18,23 +22,34 @@ You is can be a user or admin, depending of your context.
 - zod
 - pg
 
-# Start Application.
+## Start Application
+
+Clonar repositorio:
+
+```bash
+git clone https://github.com/renansko/TypePets.git
+```
 
 Install packages:
-```cmd
+
+```bash
+
 npm install
 ```
 
 Docker Image: (Docker Previously install) configurado no arquivo docker-compose
 
-```javascript
+```bash
 docker compose up -d
 ```
+
 Up migrations:
 
-```cmd
+```bash
 npx prisma migrate dev
 ```
 
+## Diagrama banco de dados:
 
-
+h
+![Diagrama](src\img\Pets.jpeg)
